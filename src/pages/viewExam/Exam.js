@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getExamById } from "../../service/service";
 
 export default function Exam() {
-    const [exam, setExam] = useState({})
+    const [exam, setExam] = useState(false)
     const { id } = useParams();
 
     useEffect(()=>{
@@ -12,14 +12,19 @@ export default function Exam() {
             console.log(res.data)
             setExam(res.data)
         })
-    },[])
-
+    },[id])
+console.log(exam)
     return(
         <>
-        <p>{exam.name}</p>
-        <p>{exam.link}</p>
-        <p>{exam.teacher.name}</p>
-        <p>{exam.subject.name}</p>
+        {exam?
+        <>
+            <p>{exam.name}</p>
+            <p>{exam.link}</p>
+            <p>{exam.teacher.name}</p>
+            <p>{exam.subject.name}</p>
+        </>
+        : ''}
+        
         </>
     );
 }
