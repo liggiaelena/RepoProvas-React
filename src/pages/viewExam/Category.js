@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getAllExamsByTeacherIdAndCategoryId } from "../../service/service";
 
 
 export default function Category({ teacherId, categoryId}) {
-    const [exams, setExams] = useState([])
+    const [exams, setExams] = useState([]);
+    let navigate = useNavigate();
 
     
     useEffect(() => {
@@ -16,7 +18,7 @@ export default function Category({ teacherId, categoryId}) {
 
     return(
         <>
-        {exams.map((exam)=> <p>{exam.name} - {exam.subject.name}</p>)}
+        {exams.map((exam)=> <p onClick={()=> navigate(`/exam/${exam.id}`)}>{exam.name} - {exam.subject.name}</p>)}
         </>
     );
 }

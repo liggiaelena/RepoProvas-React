@@ -16,7 +16,7 @@ export default function Home(props) {
                 <Buttom onClick={()=> setDisplay(!display)}>Ver provas</Buttom>
                 <ChooseContainer display={display} >
                     <Choose onClick={()=> navigate("/teachers")}>Professores</Choose>
-                    <Choose onClick={()=> navigate("/")}>Disciplinas</Choose>
+                    <Choose onClick={()=> navigate("/subjects")}>Disciplinas</Choose>
                 </ChooseContainer>
                 <Buttom onClick={()=> navigate("/")}>Inserir uma prova</Buttom>
             </ContainerButtons>
