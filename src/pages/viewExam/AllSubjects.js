@@ -18,7 +18,10 @@ export default function AllSubjects({ semesterId }) {
     },[])
     return(
         <Body>
-        {subjects.map((subject)=><p key={subject.id}>{subject.name} ({subject.exams.length} provas)</p>)}
+        {subjects.map((subject)=>
+            <p key={subject.id} onClick={()=> navigate(`/categories/subject/${subject.id}`)}>
+                {subject.name} ({subject.exams.length} provas)
+            </p>)}
         </Body>
     );
 }

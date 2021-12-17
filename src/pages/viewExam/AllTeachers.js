@@ -18,7 +18,7 @@ export default function AllTeachers(props) {
     },[])
     return(
         <Body>
-        {teachers.map((teacher)=><p key={teacher.id} onClick={()=> navigate(`/teachers/${teacher.id}`)}>{teacher.name} ({teacher.exams.length} provas)</p>)}
+        {teachers.map((teacher)=><p key={teacher.id} onClick={()=> navigate(`/categories/teacher/${teacher.id}`)}>{teacher.name} ({teacher.exams.length} provas)</p>)}
         </Body>
     );
 }

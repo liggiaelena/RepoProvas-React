@@ -22,8 +22,8 @@ function getAllSemesters(){
     return promise;
 }
 
-function getAllExamsByTeacherIdAndCategoryId(teacherId, categoryId){
-    const promise = axios.get(`${URL}/exams/teacher/${teacherId}/category/${categoryId}`);
+function getAllExamsBySearchByIdAndCategoryId(searchBy, searchById, categoryId){
+    const promise = axios.get(`${URL}/exams/${searchBy}/${searchById}/category/${categoryId}`);
     return promise;
 }
 
@@ -34,7 +34,7 @@ function getAllSubjectsBySemesterId(semesterId){
 
 export {
     getAllTeachers,
-    getAllExamsByTeacherIdAndCategoryId,
+    getAllExamsBySearchByIdAndCategoryId,
     getAllSemesters,
     getAllCategories,
     getExamById,

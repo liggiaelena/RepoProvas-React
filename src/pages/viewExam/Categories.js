@@ -1,12 +1,12 @@
 import { Body } from "../../styles/page";
 import { useEffect, useState } from "react";
-import { getAllCategories, getAllExamsByTeacherIdAndCategoryId } from "../../service/service";
+import { getAllCategories } from "../../service/service";
 import { useParams } from "react-router-dom";
 import Category from "./Category";
 
-export default function Teacher(props) {
+export default function Categories(props) {
     const [categories, setCategories] = useState([])
-    const { id } = useParams();
+    const { id, searchBy } = useParams();
 
     useEffect(()=>{
         const promiseSemester = getAllCategories()
@@ -22,7 +22,7 @@ export default function Teacher(props) {
             {categories.map((category)=>
                 <> 
                     <p>{category.name}</p>
-                    <Category key={category.id} teacherId={id} categoryId={category.id} />
+                    <Category key={category.id} searchById={id} searchBy={searchBy} categoryId={category.id} />
                 </>)}
         </Body>
     );
