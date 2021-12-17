@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 import { useState } from "react";
+import { Body } from "../styles/page";
 
 export default function Home(props) {
     const [display, setDisplay] = useState(false);
@@ -14,8 +15,8 @@ export default function Home(props) {
             <ContainerButtons>
                 <Buttom onClick={()=> setDisplay(!display)}>Ver provas</Buttom>
                 <ChooseContainer display={display} >
-                    <Choose onClick={()=> navigate("/teachers")}>ola</Choose>
-                    <Choose onClick={()=> navigate("/")}>ola2</Choose>
+                    <Choose onClick={()=> navigate("/teachers")}>Professores</Choose>
+                    <Choose onClick={()=> navigate("/")}>Disciplinas</Choose>
                 </ChooseContainer>
                 <Buttom onClick={()=> navigate("/")}>Inserir uma prova</Buttom>
             </ContainerButtons>
@@ -24,11 +25,6 @@ export default function Home(props) {
 }
 
 
-const Body = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
 const Logo = styled.div`
    width: 100%;
    display: flex;

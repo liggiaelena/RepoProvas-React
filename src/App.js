@@ -11,7 +11,7 @@ export default function App() {
       <Routes>
         <Route path = "/" exact element = {<Home />} />
         <Route path = "/teachers" exact element = {<AllTeachers />} />
-        <Route path = "/teachers/:name" exact element = {<Teacher />} />
+        <Route path = "/teachers/:id" exact element = {<Teacher />} />
       </Routes>
     </Router>
   );
