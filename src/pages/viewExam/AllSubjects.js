@@ -17,11 +17,25 @@ export default function AllSubjects({ semesterId }) {
         })
     },[])
     return(
-        <Body>
+        <>
         {subjects.map((subject)=>
-            <p key={subject.id} onClick={()=> navigate(`/categories/subject/${subject.id}`)}>
+            <Subjects key={subject.id} onClick={()=> navigate(`/categories/subject/${subject.id}`)}>
                 {subject.name} ({subject.exams.length} provas)
-            </p>)}
-        </Body>
+            </Subjects>)}
+        </>
     );
 }
+
+const Subjects = styled.div`
+    background-color: #e1daea;
+    width: 90%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+    margin-top: 10px;
+    padding-left: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+
+`

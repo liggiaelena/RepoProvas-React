@@ -56,6 +56,7 @@ const Buttom = styled.div`
     color: #fff;
     margin-top: 17px;
     margin-bottom: 10px;
+    cursor: pointer;
 `
 const ChooseContainer =styled.div`
     display: ${(props)=> props.display? "flex": "none"};
@@ -64,17 +65,21 @@ const ChooseContainer =styled.div`
     width: 80%;
     max-height: 150px;
     overflow-y: scroll;
-    background-color: aqua;
+
+    ::-webkit-scrollbar { 
+    display: none;
+}
 `
 const Choose = styled.div`
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     width: 100%;
     height: 30px;
     min-height: 30px;
-    background-color: aliceblue;
+    background-color: #e1daea;
     color: black;
     font-size: 17px;
     font-weight: 500;
+    cursor: pointer;
 `
