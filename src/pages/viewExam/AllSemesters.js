@@ -12,16 +12,17 @@ export default function AllSemesters() {
         promise.then((res)=>{
             setSemesters(res.data);
         })
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     return(
         <Body>
             <Title>Escolha a matéria</Title>
-        {semesters.map((semester)=>
-            <SubjectsContainer>
-                <h2 key={semester.id}>Semestre {semester.name}:</h2>
-                <AllSubjects key={semester.name} semesterId={semester.id}/>
-            </SubjectsContainer>
-        )}
+            {semesters.map((semester)=>
+                <SubjectsContainer key={semester.id}>
+                    <h2>Semestre {semester.name}:</h2>
+                    <AllSubjects  semesterId={semester.id}/>
+                </SubjectsContainer>
+            )}
         </Body>
     );
 }

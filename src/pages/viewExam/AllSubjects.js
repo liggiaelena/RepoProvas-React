@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllSubjectsBySemesterId } from "../../service/service";
 import { useNavigate } from "react-router";
-import { Body } from "../../styles/page";
 
 import styled from "styled-components";
 
@@ -14,14 +13,15 @@ export default function AllSubjects({ semesterId }) {
         promise.then((res)=>{
             setSubjects(res.data);
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     return(
-        <>
+        <div key={semesterId}>
         {subjects.map((subject)=>
-            <Subjects key={subject.id} onClick={()=> navigate(`/categories/subject/${subject.id}`)}>
+            <Subjects key={subject.exams.id} onClick={()=> navigate(`/categories/subject/${subject.id}`)}>
                 {subject.name} ({subject.exams.length} provas)
             </Subjects>)}
-        </>
+        </div>
     );
 }
 

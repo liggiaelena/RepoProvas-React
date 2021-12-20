@@ -12,9 +12,9 @@ export default function Categories(props) {
     useEffect(()=>{
         const promiseSemester = getAllCategories()
         promiseSemester.then((res)=>{
-            console.log(res.data)
             setCategories(res.data);
         })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
     return(
@@ -22,13 +22,13 @@ export default function Categories(props) {
             <Title>Escolha a Prova:</Title>
             <CategoriesContainer>
                 {categories.map((category)=>
-                <> 
+                <div key={category.name}> 
                     <h2>{category.name}:</h2>
                     <CategoryBox>
                         <Category key={category.id} searchById={id} searchBy={searchBy} categoryId={category.id} />
                     </CategoryBox>
                     
-                </>)}
+                </div>)}
             </CategoriesContainer>
             
         </Body>

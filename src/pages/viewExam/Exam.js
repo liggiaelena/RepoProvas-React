@@ -11,11 +11,9 @@ export default function Exam() {
     useEffect(()=>{
         const promise = getExamById(id);
         promise.then((res)=>{
-            console.log(res.data)
             setExam(res.data)
         })
     },[id])
-console.log(exam)
     return(
         <Body>
             <Title>Prova {exam.name}</Title>

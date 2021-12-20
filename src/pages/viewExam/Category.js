@@ -18,11 +18,12 @@ export default function Category({ searchById, searchBy, categoryId}) {
         promiseExams.then((res)=>{
             setExams(res.data);
             })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
     return(
         <ExamBox>
-        {exams.map((exam)=> <Exam onClick={()=> navigate(`/exam/${exam.id}`)}>
+        {exams.map((exam)=> <Exam key={exam.id} onClick={()=> navigate(`/exam/${exam.id}`)}>
                                {exam.name} - {subject? exam.teacher.name : exam.subject.name}
                             </Exam>)}
         </ExamBox>
