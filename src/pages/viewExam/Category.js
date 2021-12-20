@@ -12,12 +12,10 @@ export default function Category({ searchById, searchBy, categoryId}) {
     if(searchBy === "subject"){
         subject = true;
     }
-console.log("oi")
     
     useEffect(() => {
         const promiseExams = getAllExamsBySearchByIdAndCategoryId(searchBy, searchById, categoryId)
         promiseExams.then((res)=>{
-            console.log(res.data)
             setExams(res.data);
             })
     },[]);
