@@ -37,6 +37,11 @@ function getAllSubjectsBySemesterId(semesterId){
     return promise;
 }
 
+function getAllTeachersBySubjectId(subjectId){
+    const promise = axios.get(`${URL}/list/teachers/${subjectId}`);
+    return promise;
+}
+
 function postExam(body){
     const promise = axios.post(`${URL}/exams`, body);
     return promise;
@@ -51,4 +56,5 @@ export {
     getAllSubjects,
     getAllSubjectsBySemesterId,
     postExam,
+    getAllTeachersBySubjectId,
 }

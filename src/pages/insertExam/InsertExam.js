@@ -1,7 +1,7 @@
 import { Body, Title } from "../../styles/page";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { getAllCategories, getAllSubjects, getAllTeachers, postExam } from "../../service/service";
+import { getAllCategories, getAllSubjects, getAllTeachersBySubjectId, postExam } from "../../service/service";
 import { useNavigate } from "react-router-dom";
 
 export default function InsertExam() {
@@ -25,15 +25,26 @@ export default function InsertExam() {
         categoriesPromise.then((res)=>{
             setCategories(res.data)
         })
-        const teachersPromise = getAllTeachers();
-        teachersPromise.then((res)=>{
-            setTeachers(res.data)
-        })
         const subjectsPromise = getAllSubjects();
         subjectsPromise.then((res)=>{
             setSubjects(res.data)
         })
     },[])
+
+    function teachersRender(s){
+        setSubject({id: s.id, name: s.name, semesterId: s.semester.id});
+        const teachersPromise = getAllTeachersBySubjectId(s.id);
+        teachersPromise.then((res)=>{
+            console.log(res.data)
+            setTeachers(res.data)
+            setError("")
+        })
+        teachersPromise.catch((err)=>{
+            setError(err.response.data)
+            setLoading(false)
+            setTeachers([])
+        })
+    }
 
     function insertExam(){
         setLoading(true)
@@ -79,19 +90,19 @@ export default function InsertExam() {
                         </Choose>)}
                 </ChooseContainer>
 
-                <h2 onClick={()=> setDisplayTeacher(!displayTeacher)}>Escolha o professor: {teacher.name || '↴'}</h2>
-                <ChooseContainer display={displayTeacher}>
-                    {teachers.map((t)=> 
-                        <Choose key={t.id} onClick={()=> setTeacher({id: t.id, name: t.name})}>
-                            {t.name}
-                        </Choose>)}
-                </ChooseContainer>
-
                 <h2 onClick={()=> setDisplaySubject(!displaySubject)}>Escolha a materia: {subject.name || '↴'}</h2>
                 <ChooseContainer display={displaySubject}>
                     {subjects.map((s)=> 
-                        <Choose key={s.id} onClick={()=> setSubject({id: s.id, name: s.name, semesterId: s.semester.id})}>
+                        <Choose key={s.id} onClick={()=> teachersRender(s)}>
                             {s.name} (semestre:{s.semester.name})
+                        </Choose>)}
+                </ChooseContainer>
+
+                <h2 onClick={()=> setDisplayTeacher(!displayTeacher)}>Escolha o professor: {teacher.name || '↴'}</h2>
+                <ChooseContainer display={displayTeacher}>
+                    {teachers.map((t)=> 
+                        <Choose key={t.teacherId} onClick={()=> setTeacher({id: t.teacherId.id, name: t.teacherId.name})}>
+                            {t.teacherId.name}
                         </Choose>)}
                 </ChooseContainer>
             </InfoContainer>
