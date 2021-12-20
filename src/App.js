@@ -4,7 +4,7 @@ import Categories from './pages/viewExam/Categories';
 import AllTeachers from './pages/viewExam/AllTeachers';
 import Exam from './pages/viewExam/Exam';
 import AllSemesters from './pages/viewExam/AllSemesters';
-import Subject from './pages/viewExam/Subject'
+import InsertExam from './pages/insertExam/InsertExam';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 export default function App() {
@@ -17,7 +17,7 @@ export default function App() {
         <Route path = "/teachers" exact element = {<AllTeachers />} />
         <Route path = "/categories/:searchBy/:id" exact element = {<Categories />} />
         <Route path = "/subjects" exact element = {<AllSemesters />} />
-        {/* <Route path = "/subjects/:id" exact element = {<Subject />} /> */}
+        <Route path = "/insert" exact element = {<InsertExam />} />
       </Routes>
     </Router>
   );

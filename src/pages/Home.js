@@ -18,7 +18,7 @@ export default function Home(props) {
                     <Choose onClick={()=> navigate("/teachers")}>Professores</Choose>
                     <Choose onClick={()=> navigate("/subjects")}>Disciplinas</Choose>
                 </ChooseContainer>
-                <Buttom onClick={()=> navigate("/")}>Inserir uma prova</Buttom>
+                <Buttom onClick={()=> navigate("/insert")}>Inserir uma prova</Buttom>
             </ContainerButtons>
         </Body>
     );
