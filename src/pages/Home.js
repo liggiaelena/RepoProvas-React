@@ -14,7 +14,7 @@ export default function Home(props) {
             </Logo>
             <ContainerButtons>
                 <Buttom onClick={()=> setDisplay(!display)}>Ver provas</Buttom>
-                <ChooseContainer display={display} >
+                <ChooseContainer display={display? "true" : ''} >
                     <Choose onClick={()=> navigate("/teachers")}>Professores</Choose>
                     <Choose onClick={()=> navigate("/subjects")}>Disciplinas</Choose>
                 </ChooseContainer>

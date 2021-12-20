@@ -82,7 +82,7 @@ export default function InsertExam() {
                 />
 
                 <h2 onClick={()=> setDisplayCategory(!displayCategory)}>Escolha o tipo de prova: {category.name || '↴'}</h2>
-                <ChooseContainer display={displayCategory}>
+                <ChooseContainer display={displayCategory? "true" : ''}>
                     {categories.map((c)=> 
                         <Choose key={c.id} onClick={()=> setCategory({id: c.id, name: c.name})}>
                             {c.name}
@@ -90,7 +90,7 @@ export default function InsertExam() {
                 </ChooseContainer>
 
                 <h2 onClick={()=> setDisplaySubject(!displaySubject)}>Escolha a materia: {subject.name || '↴'}</h2>
-                <ChooseContainer display={displaySubject}>
+                <ChooseContainer display={displaySubject? "true" : ''}>
                     {subjects.map((s)=> 
                         <Choose key={s.id} onClick={()=> teachersRender(s)}>
                             {s.name} (semestre:{s.semester.name})
@@ -98,7 +98,7 @@ export default function InsertExam() {
                 </ChooseContainer>
 
                 <h2 onClick={()=> setDisplayTeacher(!displayTeacher)}>Escolha o professor: {teacher.name || '↴'}</h2>
-                <ChooseContainer display={displayTeacher}>
+                <ChooseContainer display={displayTeacher? "true" : ''}>
                     {teachers.map((t)=> 
                         <Choose key={t.teacherId} onClick={()=> setTeacher({id: t.teacherId.id, name: t.teacherId.name})}>
                             {t.teacherId.name}
