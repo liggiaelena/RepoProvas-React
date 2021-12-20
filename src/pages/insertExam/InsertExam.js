@@ -35,7 +35,6 @@ export default function InsertExam() {
         setSubject({id: s.id, name: s.name, semesterId: s.semester.id});
         const teachersPromise = getAllTeachersBySubjectId(s.id);
         teachersPromise.then((res)=>{
-            console.log(res.data)
             setTeachers(res.data)
             setError("")
         })

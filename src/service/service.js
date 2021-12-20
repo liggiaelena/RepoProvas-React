@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const URL = 'http://localhost:4000'
+let URL = 'https://repoprovas-liggiaelena.herokuapp.com'
+if(process.env.NODE_ENV === 'development'){
+    URL= 'http://localhost:4000'
+}
 
 function getExamById(id){
     const promise = axios.get(`${URL}/exams/${id}`);

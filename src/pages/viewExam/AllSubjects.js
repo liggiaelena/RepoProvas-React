@@ -12,7 +12,6 @@ export default function AllSubjects({ semesterId }) {
     useEffect(()=>{
         const promise = getAllSubjectsBySemesterId(semesterId)
         promise.then((res)=>{
-            console.log(res.data)
             setSubjects(res.data);
         })
     },[])

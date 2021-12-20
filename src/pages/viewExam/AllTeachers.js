@@ -11,7 +11,6 @@ export default function AllTeachers(props) {
     useEffect(()=>{
         const promise = getAllTeachers()
         promise.then((res)=>{
-            console.log(res.data)
             setTeachers(res.data);
         })
     },[])

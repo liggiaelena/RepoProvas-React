@@ -10,7 +10,6 @@ export default function AllSemesters() {
     useEffect(()=>{
         const promise = getAllSemesters()
         promise.then((res)=>{
-            console.log(res.data)
             setSemesters(res.data);
         })
     },[])
