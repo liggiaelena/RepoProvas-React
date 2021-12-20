@@ -1,4 +1,4 @@
-import { Body } from "../../styles/page";
+import { Body, Title } from "../../styles/page";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { getAllCategories, getAllSubjects, getAllTeachers, postExam } from "../../service/service";
@@ -32,11 +32,11 @@ export default function InsertExam() {
         const subjectsPromise = getAllSubjects();
         subjectsPromise.then((res)=>{
             setSubjects(res.data)
-            console.log(res.data)
         })
     },[])
 
     function insertExam(){
+        setLoading(true)
         const exam = {
             year,
             link,
@@ -51,50 +51,53 @@ export default function InsertExam() {
             navigate("/")
         })
         promise.catch((err)=>{
-            console.log(err.response.data)
             setError(err.response.data)
+            setLoading(false)
         })
     }
 
     return(
         <Body>
+            <Title>Insira sua Prova</Title>
+            <InfoContainer>
+                <input placeholder="link" 
+                        value={link} 
+                        onChange={ e => setLink(e.target.value)} 
+                        disabled={loading}
+                />
+                <input placeholder="year - exemplo:2020" 
+                        value={year} 
+                        onChange={ e => setYear(e.target.value)} 
+                        disabled={loading}
+                />
 
-            <input placeholder="link" 
-                    value={link} 
-                    onChange={ e => setLink(e.target.value)} 
-                    disabled={loading}
-            />
-            <input placeholder="year - exemplo:2020" 
-                    value={year} 
-                    onChange={ e => setYear(e.target.value)} 
-                    disabled={loading}
-            />
+                <h2 onClick={()=> setDisplayCategory(!displayCategory)}>Escolha o tipo de prova: {category.name || '↴'}</h2>
+                <ChooseContainer display={displayCategory}>
+                    {categories.map((c)=> 
+                        <Choose key={c.id} onClick={()=> setCategory({id: c.id, name: c.name})}>
+                            {c.name}
+                        </Choose>)}
+                </ChooseContainer>
 
-            <div onClick={()=> setDisplayCategory(!displayCategory)}>Escolha o tipo de prova: {category.name}</div>
-            <ChooseContainer display={displayCategory}>
-                {categories.map((c)=> 
-                    <Choose key={c.id} onClick={()=> setCategory({id: c.id, name: c.name})}>
-                        {c.name}
-                    </Choose>)}
-            </ChooseContainer>
+                <h2 onClick={()=> setDisplayTeacher(!displayTeacher)}>Escolha o professor: {teacher.name || '↴'}</h2>
+                <ChooseContainer display={displayTeacher}>
+                    {teachers.map((t)=> 
+                        <Choose key={t.id} onClick={()=> setTeacher({id: t.id, name: t.name})}>
+                            {t.name}
+                        </Choose>)}
+                </ChooseContainer>
 
-            <div onClick={()=> setDisplayTeacher(!displayTeacher)}>Escolha o professor: {teacher.name}</div>
-            <ChooseContainer display={displayTeacher}>
-                {teachers.map((t)=> 
-                    <Choose key={t.id} onClick={()=> setTeacher({id: t.id, name: t.name})}>
-                        {t.name}
-                    </Choose>)}
-            </ChooseContainer>
-
-            <div onClick={()=> setDisplaySubject(!displaySubject)}>Escolha a materia: {subject.name}</div>
-            <ChooseContainer display={displaySubject}>
-                {subjects.map((s)=> 
-                    <Choose key={s.id} onClick={()=> setSubject({id: s.id, name: s.name, semesterId: s.semester.id})}>
-                        {s.name} (semestre:{s.semester.name})
-                    </Choose>)}
-            </ChooseContainer>
+                <h2 onClick={()=> setDisplaySubject(!displaySubject)}>Escolha a materia: {subject.name || '↴'}</h2>
+                <ChooseContainer display={displaySubject}>
+                    {subjects.map((s)=> 
+                        <Choose key={s.id} onClick={()=> setSubject({id: s.id, name: s.name, semesterId: s.semester.id})}>
+                            {s.name} (semestre:{s.semester.name})
+                        </Choose>)}
+                </ChooseContainer>
+            </InfoContainer>
+            
             {error}
-            <button onClick={insertExam}>Pronto</button>
+            <Button onClick={insertExam}>Pronto</Button>
         </Body>
     );
 }
@@ -111,12 +114,52 @@ const ChooseContainer =styled.div`
 const Choose = styled.div`
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     width: 100%;
     height: 30px;
     min-height: 30px;
-    background-color: aliceblue;
+    background-color: #d3c2ea;
     color: black;
     font-size: 17px;
     font-weight: 500;
+    padding-left: 10px;
+`
+const InfoContainer = styled.div`
+    margin-top: 20px;
+    input{
+        width: 90%;
+        height: 35px;
+        border-radius: 5px;
+        background-color: #e1daea;
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    input::placeholder{
+        color: #666161;
+        padding-left: 15px;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    h2{
+        margin-top: 15px;
+        margin-bottom: 5px;
+        font-size: 19px;
+    }
+    h2:hover{
+        cursor: pointer;
+    }
+`
+const Button = styled.div`
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    border-radius: 5px;
+    background-color: #a790f9;
+    cursor: pointer;
+
 `

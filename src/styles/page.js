@@ -6,6 +6,8 @@ const Body = styled.div`
     align-items: center;
 `
 const Title = styled.div`
+    margin-top: 50px;
+    font-size: 27px;
     width: 90%;
     display: flex;
     align-items: center;
