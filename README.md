@@ -2,9 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## deploy:
 
-In the project directory, you can run:
+repo-provas-react-garwtuzyx-liggiaelena.vercel.app
 
 ### `npm start`
 
